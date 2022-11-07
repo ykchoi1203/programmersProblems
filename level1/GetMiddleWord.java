@@ -7,6 +7,7 @@ public class GetMiddleWord {
     }
 
     public static String solution(String s) {
-        return s.length()%2 == 0 ? ("" + s.charAt(s.length()/2 -1)) + s.charAt(s.length()/2) : "" + s.charAt(s.length()/2);
+        return s.length() % 2 == 0 ?
+                ("" + s.charAt(s.length() / 2 -1)) + s.charAt(s.length() / 2) : "" + s.charAt(s.length() / 2);
     }
 }
