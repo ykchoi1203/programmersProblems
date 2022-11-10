@@ -29,10 +29,12 @@ public class FinitePrime {
                 b /= i;
                 continue;
             }
+            // 컨티뉴가 있기 때문에 만약 위에서 나누어 진다면 실행 X
             i += 2;
         }
         if (b == 1)
             return 1;
+
         return 2;
     }
 }
