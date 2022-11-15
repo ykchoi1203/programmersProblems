@@ -20,7 +20,6 @@ public class Year2016 {
             i++;
         }
 
-
         return answer[(sum + b - 1) % 7];
     }
 }
