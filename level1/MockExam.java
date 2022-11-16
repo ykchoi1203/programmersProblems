@@ -24,7 +24,7 @@ public class MockExam {
             if(answers[i] == arr3[i%10])
                 cnt3++;
         }
-        
+
         int maxCorrect = cnt1;
         if(maxCorrect < cnt2)
             maxCorrect = cnt2;
