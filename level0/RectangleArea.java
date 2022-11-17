@@ -7,7 +7,7 @@ public class RectangleArea {
     }
 
     public static int solution(int[][] dots) {
-        int answer = 0;
+        int answer;
         int startWidth = dots[0][0];
         int endWidth = dots[0][0];
         int startHeight = dots[0][1];
@@ -21,7 +21,6 @@ public class RectangleArea {
         }
 
         answer = Math.abs(startWidth - endWidth) * Math.abs(startHeight - endHeight);
-
 
         return answer;
     }
