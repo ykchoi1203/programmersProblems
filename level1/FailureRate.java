@@ -1,6 +1,8 @@
 package programmersProblum.level1;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class FailureRate {
@@ -35,27 +37,32 @@ public class FailureRate {
         // N+1 에 도달한 사람의 실패율은 필요없으니 제거.
         if(treeMap.containsKey(N+1))
             treeMap.remove(N+1);
-        // answer에 넣을 위치를 알려줄 cursor 변수 생성
-        int cursor = 0;
-        // treeMap의 사이즈가 0이 아닐때까지 진행 -> 실패율이 제일 큰것을 제거할 것이기 때문
-        while(treeMap.size() != 0) {
-            int i=1;            // 높은 key 값을 저장할 변수 (나중에 제거 및 answer에 추가를 위해)
-            double max = -1;    // 실패율은 0보다 작을 수 없기 때문에 초기값으로 -1을 줌
-            // key값을 받아 max보다 treeMap(key)가 크다면
-            // max값을 treeMap.get(key) -> value(실패율)값로 바꾸고, i를 key값으로 바꿈
-            for(int key : treeMap.keySet()){
-                if(treeMap.get(key) > max) {
-                    max = treeMap.get(key);
-                    i = key;
-                }
-            }
-            // 해당 키 값를 answer의 커서위치에 넣어줌
-            answer[cursor] = i;
-            // 저장했으니 해당 키값 제거
-            treeMap.remove(i);
-            // 커서 위치 +1
-            cursor++;
-        }
+
+        answer = treeMap.entrySet().stream()    // entrySet 으로 스트림
+                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue())) // comparingByValue() value 값으로 역순 정렬
+                .mapToInt(el -> el.getKey()).toArray();
+        
+//        // answer에 넣을 위치를 알려줄 cursor 변수 생성
+//        int cursor = 0;
+//        // treeMap의 사이즈가 0이 아닐때까지 진행 -> 실패율이 제일 큰것을 제거할 것이기 때문
+//        while(treeMap.size() != 0) {
+//            int i=1;            // 높은 key 값을 저장할 변수 (나중에 제거 및 answer에 추가를 위해)
+//            double max = -1;    // 실패율은 0보다 작을 수 없기 때문에 초기값으로 -1을 줌
+//            // key값을 받아 max보다 treeMap(key)가 크다면
+//            // max값을 treeMap.get(key) -> value(실패율)값로 바꾸고, i를 key값으로 바꿈
+//            for(int key : treeMap.keySet()){
+//                if(treeMap.get(key) > max) {
+//                    max = treeMap.get(key);
+//                    i = key;
+//                }
+//            }
+//            // 해당 키 값를 answer의 커서위치에 넣어줌
+//            answer[cursor] = i;
+//            // 저장했으니 해당 키값 제거
+//            treeMap.remove(i);
+//            // 커서 위치 +1
+//            cursor++;
+//        }
 
         return answer;
     }
