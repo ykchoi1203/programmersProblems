@@ -12,12 +12,13 @@ public class Ranking {
     public static int[] solution(int[][] score) {
         int[] answer = new int[score.length];
         int[] avg = new int[score.length];
+
         for(int i=0; i<score.length; i++) {
             avg[i] = score[i][0] + score[i][1];
         }
         double max;
         int rate = 1;
-        for(int i=0; i<answer.length;) {
+        while(rate <= answer.length) {
             max = Arrays.stream(avg).max().getAsInt();
             int cnt = 0;
             for(int j=0; j<avg.length; j++) {
@@ -28,7 +29,6 @@ public class Ranking {
                 }
             }
             rate += cnt;
-            i += cnt;
         }
 
         return answer;
