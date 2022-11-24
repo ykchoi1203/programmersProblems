@@ -41,7 +41,7 @@ public class FailureRate {
         answer = treeMap.entrySet().stream()    // entrySet 으로 스트림
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByValue())) // comparingByValue() value 값으로 역순 정렬
                 .mapToInt(el -> el.getKey()).toArray();
-        
+
 //        // answer에 넣을 위치를 알려줄 cursor 변수 생성
 //        int cursor = 0;
 //        // treeMap의 사이즈가 0이 아닐때까지 진행 -> 실패율이 제일 큰것을 제거할 것이기 때문
