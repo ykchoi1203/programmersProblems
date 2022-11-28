@@ -19,30 +19,28 @@ public class GymSuit {
         // 제한 사항을 잘 읽자.
         // 여벌 체육복을 가져온 학생이 체육복을 도난당했을 수 있습니다.
         // 이때 이 학생은 체육복을 하나만 도난당했다고 가정하며, 남은 체육복이 하나이기에 다른 학생에게는 체육복을 빌려줄 수 없습니다.
+        // lost와 reserve에 같은 번호가 들어있는 것을 빼줌
         for(int i=0; i<lostAl.size(); i++) {
-            if(!reserveAl.isEmpty()) {
-                if (reserveAl.contains(lostAl.get(i))) {
-                    reserveAl.remove(reserveAl.indexOf(lostAl.get(i)));
-                    lostAl.remove(i);
-                    i--;
-                }
+            if (reserveAl.contains(lostAl.get(i))) {
+                reserveAl.remove(reserveAl.indexOf(lostAl.get(i)));
+                lostAl.remove(i);
+                i--;
             }
         }
 
         for(int i=0; i<lostAl.size();i++) {
-            if(!reserveAl.isEmpty()) {
-                if (reserveAl.contains(lostAl.get(i) - 1)) {
-                    reserveAl.remove(reserveAl.indexOf(lostAl.get(i) - 1));
-                    lostAl.remove(i);
-                    i--;
-                } else if (reserveAl.contains(lostAl.get(i) + 1)) {
-                    reserveAl.remove(reserveAl.indexOf(lostAl.get(i) + 1));
-                    lostAl.remove(i);
-                    i--;
-                }
-            } else break;
+            // 해당 lostAl에 들어있는 번호의 앞쪽 먼저 검사
+            if (reserveAl.contains(lostAl.get(i) - 1)) {
+                reserveAl.remove(reserveAl.indexOf(lostAl.get(i) - 1));
+                lostAl.remove(i);
+                i--;
+            } else if (reserveAl.contains(lostAl.get(i) + 1)) { // 앞쪽 번호가 없다면 뒷쪽 번호 검사
+                reserveAl.remove(reserveAl.indexOf(lostAl.get(i) + 1));
+                lostAl.remove(i);
+                i--;
+            }
         }
-
+        // 전체 학생에서 체육복이 없는 사람들을 빼줌
         return answer - lostAl.size();
     }
 }
